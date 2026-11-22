@@ -35,7 +35,11 @@ jobs:
         uses: gradle/actions/setup-gradle@v6
         with:
           gradle-version: '8.7'
-
+      - name: Fix Java target
+        run: |
+          FILE=$(find "$PROJECT_DIR" -path "*/app/build.gradle*" -type f | head -n 1)
+          sed -i 's/VERSION_1_8/VERSION_17/g' "$FILE"
+          
       - name: Build APK
         run: gradle assembleDebug
         working-directory: ${{ env.PROJECT_DIR }}
