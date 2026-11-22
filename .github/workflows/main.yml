@@ -39,7 +39,7 @@ jobs:
         run: |
           FILE=$(find "$PROJECT_DIR" -path "*/app/build.gradle*" -type f | head -n 1)
           sed -i 's/VERSION_1_8/VERSION_17/g' "$FILE"
-          
+                    sed -i '/android {/a\    compileOptions {\n        sourceCompatibility JavaVersion.VERSION_17\n        targetCompatibility JavaVersion.VERSION_17\n    }' "$FILE"
       - name: Build APK
         run: gradle assembleDebug
         working-directory: ${{ env.PROJECT_DIR }}
