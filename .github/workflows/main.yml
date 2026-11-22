@@ -44,3 +44,5 @@ jobs:
         with:
           name: MONIR-MAHAL-APK
           path: project/**/build/outputs/apk/debug/*.apk
+        with:
+          packages: platform-tools
